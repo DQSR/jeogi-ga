@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon . --ignore data"
+    "start": "node .",
+    "dev": "nodemon . --ignore data"
   },
   "author": "D.QSR",
   "license": "MIT",
