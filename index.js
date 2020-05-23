@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('@koa/router');
 const koaBody = require('koa-body');
+const logger = require('koa-logger');
 
 const url = require('url');
 
@@ -69,7 +70,10 @@ router
         ctx.status = 500;
         console.error(e);
       })
+    console.log(`  \x1b[90m---\x1b[0m \x1b[1mNEW\x1b[0m\x1b[90m ${urlID} ${reqUrl}\x1b[0m`)
   })
+
+app.use(logger());
 
 app
   .use(router.routes())
