@@ -8,7 +8,7 @@ const url = require('url');
 const low = require('lowdb');
 const FileAsync = require('lowdb/adapters/FileAsync');
 
-const adapter = new FileAsync('data/db.json');
+const adapter = new FileAsync('db.json');
 let db = null;
 
 low(adapter).then(_db => {
