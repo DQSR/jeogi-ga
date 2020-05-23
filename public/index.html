@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>URL단축기</title>
   <style>
+    :root {
+      --color: #38ada9
+    }
     @font-face {
       font-family: 'Cafe24Ohsquare';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
@@ -21,7 +24,7 @@
       align-items: center;
       width: 100vw;
       height: 100vh;
-      background-color: #38ada9;
+      background-color: var(--color);
     }
     #form {
       padding: 30px;
@@ -59,14 +62,14 @@
     }
     input[type='button'] {
       border-radius: 10px;
-      background-color: #38ada9;
+      background-color: var(--color);
       color: white;
     }
     input[type='button']:hover {
-      background-color: hsl(178, 51%, 40%);
+      filter: brightness(95%);
     }
     input[type='button']:active {
-      background-color: hsl(178, 51%, 35%);
+      filter: brightness(90%);
     }
     .result {
       font-size: 1.8em;
