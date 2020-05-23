@@ -1,0 +1,21 @@
+{
+  "name": "urlshorter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon . --ignore data"
+  },
+  "author": "D.QSR",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^8.0.8",
+    "koa": "^2.12.0",
+    "koa-body": "^4.1.3",
+    "koa-static": "^5.0.0",
+    "lowdb": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

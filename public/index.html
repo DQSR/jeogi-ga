@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL단축기</title>
+  <style>
+    @font-face {
+      font-family: 'Cafe24Ohsquare';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html, body {
+      margin: 0px;
+      padding: 0px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #474787;
+    }
+    #form {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: white;
+      font-family: 'Cafe24Ohsquare';
+      width: 50vw;
+    }
+    #form > * {
+      margin: 10px 0px;
+    }
+    #title {
+      font-size: 3em;
+    }
+    input {
+      font-family: 'Cafe24Ohsquare';
+      font-size: 2em;
+      font-weight: 100;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input[type='text'] {
+      border-bottom: 1px solid gray;
+    }
+    input[type='text']::placeholder {
+      color: hsl(0, 0%, 60%);
+    }
+    input[type='button'] {
+      border-radius: 10px;
+      background-color: #474787;
+      color: white;
+    }
+    input[type='button']:hover {
+      background-color: hsl(240, 31%, 35%);
+    }
+    input[type='button']:active {
+      background-color: hsl(240, 31%, 30%);
+    }
+    .result {
+      font-size: 1.8em;
+      text-align: center;
+      scroll-snap-align: start;
+      padding: 15px;
+      border-bottom: 1px dashed gray;
+    }
+    .result:last-child {
+      border-bottom: none;
+    }
+    #results {
+      max-height: 210px;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      margin-top: 20px;
+      padding: 0px 10px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div id="form">
+    <div id="title">URL단축기</div>
+    <input type="text" name="url" placeholder="단축할 URL을 입력하세요">
+    <input type="button" value="단축하기">
+    <div id="results">
+
+    </div>
+  </div>
+
+  <script>
+    const urlInput = document.querySelector("input[type='text']");
+    const results = document.querySelector('#results');
+    document.querySelector("input[type='button']").addEventListener('click', e => {
+      const reqUrl = urlInput.value;
+      fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          url: reqUrl
+        })
+      })
+      .then(d => {
+        if (d.status !== 200) throw new Error();
+        return d.text();
+      })
+      .then(d => {
+        const url = document.createElement('div');
+        url.classList.add('result');
+        url.innerText = `${document.location.origin}/${d}`;
+        results.insertBefore(url, document.querySelector('#form .result'));
+        results.scrollTop = 0;
+        urlInput.value = '';
+      })
+    })
+  </script>
+</body>
+</html>
