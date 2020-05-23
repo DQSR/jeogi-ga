@@ -48,8 +48,6 @@ router
     ctx.redirect(data.url);
   })
   .post('/', koaBody(), async ctx => {
-    ctx.set('Access-Control-Allow-Origin', '*')
-
     const reqUrl = ctx.request.body.url;
 
     if (!reqUrl) return ctx.status = 400;
